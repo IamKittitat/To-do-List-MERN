@@ -3,12 +3,12 @@ import TodoCard from "./TodoCard";
 import GetTodo from "../api/GetTodo";
 import ThemeContext from '../Components/Themes';
 
-function TodoList() {
+function TodoList(props) {
   const [theme,setTheme] = useContext(ThemeContext);
   const [Todos, setTodos] = useState([]);
   useEffect(() => {
     GetTodo(setTodos)
-  }, [])
+  }, [props])
 
   // const GetTodo = () => {
   //   fetch("http://localhost:8000/api/todos/")
