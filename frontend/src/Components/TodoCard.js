@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
+import DeleteTodoById from "../api/DeleteTodoById";
 import GetTodo from "../api/GetTodo";
+import UpdateDoneStatus from "../api/UpdateDonestatus";
 
 const Td = styled.td`
     width: 50px;
@@ -30,34 +32,11 @@ function TodoCard(props) {
         }
         let newTodo = { ...todo, done: !todo.done };
         setTodo(newTodo);
-        fetch('http://localhost:8000/api/todos/' + id, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/form-data',
-                'Content-Type': 'application/json',
-
-            },
-            body: JSON.stringify(data),
-        })
-            .then(res => res.json())
+        UpdateDoneStatus(data,id)
     }
     const DeleteTodo = id => {
         const newTodos = [...props.Todos];
-        console.log(newTodos);
-
-        fetch('http://localhost:8000/api/todos/' + id, {
-            method: 'DELETE',
-            headers: {
-                Accept: 'application/form-data',
-                'Content-Type': 'application/json',
-            },
-        })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    GetTodo(props.setTodos);
-                }
-            ) 
+        DeleteTodoById(GetTodo,id,props)
     }
     const colorForStatus = todo.done == true ? '#0FC65E' : '#E42222';    
     const ButtonStyle = {
