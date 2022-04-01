@@ -1,6 +1,7 @@
 import React,{ useState,useContext } from "react";
 import { Link } from "react-router-dom";
 import ThemeContext from '../Components/Themes';
+import TodoList from "./TodoList";
 
 function Form() {
   const [inputs, setInputs] = useState({});
@@ -13,7 +14,7 @@ function Form() {
   }
 
   const handleSubmit = event => {
-    // event.preventDefault();
+    event.preventDefault();
     let data = {
       'task': inputs.task,
       'date': inputs.date,
@@ -30,9 +31,7 @@ function Form() {
       .then(res => res.json())
       .then(
         (result) => {
-          //alert(result['msg'])
-          window.location.href = '/';
-          // setInputs({task:"",date:""});
+          setInputs({task:"",date:""});
         }
       )
   }
@@ -64,13 +63,10 @@ function Form() {
     borderRadius: '10px',
     cursor: 'pointer',
     backgroundColor: '#8B948F',
-  }
-
-  const SubmitStyleDiv = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    textDecoration: 'none',
+    margin: 'auto',
   }
 
   const TaskInputStyle = {
@@ -112,35 +108,36 @@ function Form() {
   }
 
   return (
-    <form>
-      <div style={InputStyle}> 
-        <div style={TaskStyle}>
-          <label style={TaskLabelStyle}>Task</label>
-          <input
-            type="text"
-            name="task"
-            value={inputs.task || ""}
-            onChange={handleChange}
-            style={TaskInputStyle}
-          />
-        </div>
+    <>
+      <form>
+        <div style={InputStyle}> 
+          <div style={TaskStyle}>
+            <label style={TaskLabelStyle}>Task</label>
+            <input
+              type="text"
+              name="task"
+              value={inputs.task || ""}
+              onChange={handleChange}
+              style={TaskInputStyle}
+            />
+          </div>
 
-        <div style={DateStyle}>
-          <label style={DateLabelStyle}>Due Date</label>
-          <input
-            type="date"
-            name="date"
-            value={inputs.date || ""}
-            onChange={handleChange}
-            style={DateInputStyle}
-          />
-        </div>
+          <div style={DateStyle}>
+            <label style={DateLabelStyle}>Due Date</label>
+            <input
+              type="date"
+              name="date"
+              value={inputs.date || ""}
+              onChange={handleChange}
+              style={DateInputStyle}
+            />
+          </div>
 
-      </div>
-      <Link to='/' style={SubmitStyleDiv} >
-        <input type="submit" style={SubmitStyle} onClick={handleSubmit}/>
-      </Link>   
-    </form>
+        </div>
+        <input type="submit" style={SubmitStyle} onClick={handleSubmit}/>  
+      </form>
+      <TodoList inputs={inputs}/>
+    </>
   )
 }
 
