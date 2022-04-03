@@ -38,10 +38,9 @@ function TodoCard(props) {
         UpdateTodoById(data, id)
     }
     const DeleteTodo = id => {
-        const newTodos = [...props.Todos];
         DeleteTodoById(GetTodo, id, props)
     }
-    const colorForStatus = todo.done == true ? '#0FC65E' : '#E42222';
+    const colorForStatus = todo.done === true ? '#0FC65E' : '#E42222';
     const ButtonStyle = {
         border: 'none',
         color: 'white',
