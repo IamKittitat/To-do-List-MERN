@@ -15,7 +15,6 @@ function CreateTodo(data,setInputs){
           setInputs({task:"",date:""});
         }
       )
-      .catch(alert("Please input all fields"));
 }
 
 export default CreateTodo;
