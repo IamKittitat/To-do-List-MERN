@@ -10,16 +10,6 @@ function TodoList(props) {
     GetTodo(setTodos)
   }, [props])
 
-  // const GetTodo = () => {
-  //   fetch("http://localhost:8000/api/todos/")
-  //     .then(res => res.json())
-  //     .then(
-  //       (result) => {
-  //         setTodos(result)
-  //       }
-  //     )
-  // }
-
   return (
     <>
       <style>{`
