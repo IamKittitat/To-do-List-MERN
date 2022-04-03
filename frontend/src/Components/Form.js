@@ -1,5 +1,5 @@
 import React,{ useState,useContext } from "react";
-import { Link } from "react-router-dom";
+import CreateTodo from "../api/CreateTodo";
 import ThemeContext from '../Components/Themes';
 import TodoList from "./TodoList";
 
@@ -20,20 +20,7 @@ function Form() {
       'date': inputs.date,
       'done': false,
     }
-    fetch('http://localhost:8000/api/todos/', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/form-data',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setInputs({task:"",date:""});
-        }
-      )
+    CreateTodo(data,setInputs)
   }
 
   const InputStyle = {
@@ -97,7 +84,7 @@ function Form() {
     fontWeight: 'bold',
     margin: '0px 20px 10px',
   }
-// Inline css
+
   const DateLabelStyle = {
     color: theme[theme.now].titleColor,
     fontFamily: 'Montserrat, sans-serif',
