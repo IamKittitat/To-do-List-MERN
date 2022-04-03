@@ -22,7 +22,8 @@ function TodoList(props) {
         margin:20px 10px 20px 70px;
         background: #34495E;
         width: 90%;
-        border-radius: 10px;        
+        border-radius: 10px;   
+        border-collapse: collapse;    
       }
 
       th{
