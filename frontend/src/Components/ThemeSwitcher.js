@@ -16,10 +16,8 @@ const Toggle = styled.button`
 
 
 function ThemeSwitcher() {
-    // const Themes = useContext(ThemeContext);
-    // const [theme,setTheme] = useState(Themes);
     const [theme,setTheme] = useContext(ThemeContext);
-    //console.log(theme);
+
     function changeTheme() {
         if (theme.now === "light") {
             setTheme({...theme,now:"dark"});
@@ -28,6 +26,7 @@ function ThemeSwitcher() {
         }
     };
     const description = theme.now === "light" ? "To Dark" : "To Light";
+    
     return (
         <Toggle onClick={changeTheme} theme={theme}>
             {description}
