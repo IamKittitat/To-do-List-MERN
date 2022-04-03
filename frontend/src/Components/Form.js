@@ -15,12 +15,16 @@ function Form() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    let data = {
-      'task': inputs.task,
-      'date': inputs.date,
-      'done': false,
+    if(inputs.task && inputs.date){
+      let data = {
+        'task': inputs.task,
+        'date': inputs.date,
+        'done': false,
+      }
+      CreateTodo(data,setInputs);
+    } else{
+      alert("Please fill in all fields");
     }
-    CreateTodo(data,setInputs)
   }
 
   const InputStyle = {
@@ -105,7 +109,7 @@ function Form() {
               name="task"
               value={inputs.task || ""}
               onChange={handleChange}
-              style={TaskInputStyle}
+              style={TaskInputStyle} 
             />
           </div>
 
@@ -116,7 +120,7 @@ function Form() {
               name="date"
               value={inputs.date || ""}
               onChange={handleChange}
-              style={DateInputStyle}
+              style={DateInputStyle} 
             />
           </div>
 
