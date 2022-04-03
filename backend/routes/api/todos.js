@@ -9,6 +9,7 @@ router.get('/test', (req, res) => { res.send("Test") });
 
 router.get('/', (req, res) => {
     Todo.find()
+        .sort('date')
         .then(todos => res.json(todos))
         .catch(err => res.status(404).json({ noTodoFound: "No Todo found" }));
 });
