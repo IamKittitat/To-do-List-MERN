@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React,{ useContext } from 'react';
+import React, { useContext } from 'react';
 import ThemeContext from '../Components/Themes';
 
 const Title = styled.h1`
@@ -9,8 +9,8 @@ const Title = styled.h1`
     font-family: Montserrat, sans-serif;
 `;
 
-function Header(){
-    const [theme,setTheme] = useContext(ThemeContext);
+function Header() {
+    const [theme, setTheme] = useContext(ThemeContext);
     return (
         <Title theme={theme}> To Do List </Title>
     )

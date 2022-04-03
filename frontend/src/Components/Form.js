@@ -1,11 +1,11 @@
-import React,{ useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import CreateTodo from "../api/CreateTodo";
 import ThemeContext from '../Components/Themes';
 import TodoList from "./TodoList";
 
 function Form() {
   const [inputs, setInputs] = useState({});
-  const [theme,setTheme] = useContext(ThemeContext);
+  const [theme, setTheme] = useContext(ThemeContext);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -15,14 +15,14 @@ function Form() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    if(inputs.task && inputs.date){
+    if (inputs.task && inputs.date) {
       let data = {
         'task': inputs.task,
         'date': inputs.date,
         'done': false,
       }
-      CreateTodo(data,setInputs);
-    } else{
+      CreateTodo(data, setInputs);
+    } else {
       alert("Please fill in all fields");
     }
   }
@@ -32,19 +32,16 @@ function Form() {
     margin: '10px 160px 0px 110px',
     justifyContent: 'space-between',
   }
-
   const TaskStyle = {
     display: 'flex',
     flexDirection: 'column',
     margin: '20px',
   }
-
   const DateStyle = {
     display: 'flex',
     flexDirection: 'column',
     margin: '20px',
   }
-
   const SubmitStyle = {
     border: 'none',
     color: 'white',
@@ -59,27 +56,24 @@ function Form() {
     justifyContent: 'center',
     margin: 'auto',
   }
-
   const TaskInputStyle = {
     width: '550px',
     height: '40px',
     borderRadius: '14px',
     fontSize: '20px',
-    padding:'3px 30px',
+    padding: '3px 30px',
     backgroundColor: theme[theme.now].pageBackground,
     color: theme[theme.now].titleColor,
   }
-
   const DateInputStyle = {
     width: '550px',
     height: '40px',
     borderRadius: '14px',
     fontSize: '20px',
-    padding:'3px 30px',
+    padding: '3px 30px',
     backgroundColor: theme[theme.now].pageBackground,
     color: theme[theme.now].titleColor,
   }
-
   const TaskLabelStyle = {
     color: theme[theme.now].titleColor,
     fontFamily: 'Montserrat, sans-serif',
@@ -88,7 +82,6 @@ function Form() {
     fontWeight: 'bold',
     margin: '0px 20px 10px',
   }
-
   const DateLabelStyle = {
     color: theme[theme.now].titleColor,
     fontFamily: 'Montserrat, sans-serif',
@@ -101,7 +94,7 @@ function Form() {
   return (
     <>
       <form>
-        <div style={InputStyle}> 
+        <div style={InputStyle}>
           <div style={TaskStyle}>
             <label style={TaskLabelStyle}>Task</label>
             <input
@@ -109,7 +102,7 @@ function Form() {
               name="task"
               value={inputs.task || ""}
               onChange={handleChange}
-              style={TaskInputStyle} 
+              style={TaskInputStyle}
             />
           </div>
 
@@ -120,14 +113,14 @@ function Form() {
               name="date"
               value={inputs.date || ""}
               onChange={handleChange}
-              style={DateInputStyle} 
+              style={DateInputStyle}
             />
           </div>
 
         </div>
-        <input type="submit" style={SubmitStyle} onClick={handleSubmit}/>  
+        <input type="submit" style={SubmitStyle} onClick={handleSubmit} />
       </form>
-      <TodoList inputs={inputs}/>
+      <TodoList inputs={inputs} />
     </>
   )
 }

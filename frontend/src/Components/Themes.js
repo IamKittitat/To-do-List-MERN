@@ -13,7 +13,7 @@ const DarkTheme = {
     tableColor: "#ACC1D6",
     tableFontColor: "#000",
 }
-const  ThemeContext = React.createContext();
+const ThemeContext = React.createContext();
 
 export const Themes = {
     light: LightTheme,

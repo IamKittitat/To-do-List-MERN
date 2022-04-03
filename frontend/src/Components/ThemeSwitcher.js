@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React,{ useContext } from 'react';
+import React, { useContext } from 'react';
 import ThemeContext from '../Components/Themes';
 
 const Toggle = styled.button`
@@ -16,17 +16,17 @@ const Toggle = styled.button`
 
 
 function ThemeSwitcher() {
-    const [theme,setTheme] = useContext(ThemeContext);
+    const [theme, setTheme] = useContext(ThemeContext);
 
     function changeTheme() {
         if (theme.now === "light") {
-            setTheme({...theme,now:"dark"});
+            setTheme({ ...theme, now: "dark" });
         } else {
-            setTheme({...theme,now:"light"});
+            setTheme({ ...theme, now: "light" });
         }
     };
     const description = theme.now === "light" ? "To Dark" : "To Light";
-    
+
     return (
         <Toggle onClick={changeTheme} theme={theme}>
             {description}

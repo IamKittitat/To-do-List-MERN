@@ -1,5 +1,3 @@
-import React from "react";
-
 function GetTodo(setTodos) {
     fetch("http://localhost:8000/api/todos/")
         .then(res => res.json())

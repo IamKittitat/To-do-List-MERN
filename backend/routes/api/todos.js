@@ -28,15 +28,15 @@ router.get('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
     Todo.findByIdAndUpdate(req.params.id, req.body)
-        .then(todo => res.json({ msg: "Updated successfully", todo:todo }))
+        .then(todo => res.json({ msg: "Updated successfully", todo: todo }))
         .catch(err => res.status(400).json({ error: 'Unable to update the Database' }))
 });
 
-router.delete('/:id', (req,res) => { //validate : deadline > future , status : enum 
-    Todo.findByIdAndRemove(req.params.id,req.body)
-        .then(todo => res.json({msg: "Removed successfully", }))
-        .catch(err => res.status(404).json({error: "Todo not found"}));
-    
+router.delete('/:id', (req, res) => {
+    Todo.findByIdAndRemove(req.params.id, req.body)
+        .then(todo => res.json({ msg: "Removed successfully", }))
+        .catch(err => res.status(404).json({ error: "Todo not found" }));
+
 });
 
 module.exports = router;

@@ -14,33 +14,34 @@ const Tr = styled.tr`
     font-family: Montserrat, sans-serif !important;
     background-color: ${props => props.tableRowColor} !important;
 `
-const UpdateButton = styled.input.attrs({type: "submit"})`
+const UpdateButton = styled.input.attrs({ type: "submit" })`
     background-color: #EEA90B;
     ${({ styleOverrides }) => ({ ...styleOverrides })}
 `
-const CheckBox = styled.input.attrs({type: "submit"})`
+const CheckBox = styled.input.attrs({ type: "submit" })`
     background-color: ${props => props.colorForStatus};
     ${({ styleOverrides }) => ({ ...styleOverrides })}
 `
-const DeleteButton = styled.input.attrs({type: "submit"})`
+const DeleteButton = styled.input.attrs({ type: "submit" })`
     background-color: #E42222;
     ${({ styleOverrides }) => ({ ...styleOverrides })}
 `
 function TodoCard(props) {
     const [todo, setTodo] = useState(props.todo);
+    
     const changeDoneStatus = (id, done) => {
         var data = {
             'done': !done,
         }
         let newTodo = { ...todo, done: !todo.done };
         setTodo(newTodo);
-        UpdateTodoById(data,id)
+        UpdateTodoById(data, id)
     }
     const DeleteTodo = id => {
         const newTodos = [...props.Todos];
-        DeleteTodoById(GetTodo,id,props)
+        DeleteTodoById(GetTodo, id, props)
     }
-    const colorForStatus = todo.done == true ? '#0FC65E' : '#E42222';    
+    const colorForStatus = todo.done == true ? '#0FC65E' : '#E42222';
     const ButtonStyle = {
         border: 'none',
         color: 'white',
@@ -50,14 +51,13 @@ function TodoCard(props) {
         margin: '4px 10px',
         cursor: 'pointer',
     }
-    
     const tableRowColor = () => {
-        if (todo.done){
+        if (todo.done) {
             return '#0BA94F'
-        } else{
-            if (new Date().setHours(0,0,0,0) <= new Date(todo.date).setHours(0,0,0,0)){
+        } else {
+            if (new Date().setHours(0, 0, 0, 0) <= new Date(todo.date).setHours(0, 0, 0, 0)) {
                 return '#34495E'
-            } 
+            }
             return '#AF0D0D'
         }
     }
@@ -72,7 +72,7 @@ function TodoCard(props) {
                 </Link>
                 <DeleteButton styleOverrides={ButtonStyle} type="submit" value="Delete" onClick={() => DeleteTodo(todo._id)} />
             </div></Td>
-            <Td>{(new Date().setHours(0,0,0,0) === new Date(todo.date).setHours(0,0,0,0)) ? 'Today' : todo.date}</Td>
+            <Td>{(new Date().setHours(0, 0, 0, 0) === new Date(todo.date).setHours(0, 0, 0, 0)) ? 'Today' : todo.date}</Td>
         </Tr>
     );
 

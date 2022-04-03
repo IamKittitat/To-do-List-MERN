@@ -1,10 +1,10 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import TodoCard from "./TodoCard";
 import GetTodo from "../api/GetTodo";
 import ThemeContext from '../Components/Themes';
 
 function TodoList(props) {
-  const [theme,setTheme] = useContext(ThemeContext);
+  const [theme, setTheme] = useContext(ThemeContext);
   const [Todos, setTodos] = useState([]);
   useEffect(() => {
     GetTodo(setTodos)
@@ -57,7 +57,7 @@ function TodoList(props) {
         </thead>
         <tbody className="tableBody">
           {Todos.map((todo, idx) => (
-            <TodoCard key={todo._id} todo={todo} setTodos={setTodos} Todos={Todos} idx={idx}/>
+            <TodoCard key={todo._id} todo={todo} setTodos={setTodos} Todos={Todos} idx={idx} />
           ))}
         </tbody>
       </table>
