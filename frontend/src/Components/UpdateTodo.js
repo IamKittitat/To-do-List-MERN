@@ -1,7 +1,8 @@
 import React, { useState, useEffect,useContext } from "react";
 import { Link, useParams } from 'react-router-dom';
 import ThemeContext from '../Components/Themes';
-
+import UpdateTodoById from "../api/UpdateTodoById";
+import GetTodoById from "../api/GetTodoById";
 
 function UpdateTodo() {
 
@@ -11,44 +12,16 @@ function UpdateTodo() {
     const [theme,setTheme] = useContext(ThemeContext);
 
     useEffect(() => {
-        GetTodoById(id)
-    }, [])
-
-    const GetTodoById = (id) => { //dont need to fetch here.
-        fetch("http://localhost:8000/api/todos/" + id)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    setTask(result.task);
-                    setDate(result.date);
-                }
-            )
-    }
+        GetTodoById(setTask, setDate, id);
+    },[])
 
     const handleSubmit = event => {
-        // event.preventDefault(); // ! 
-        // console.log("handleSubmit");
         var data = {
             'id': id,
             'task': task,
             'date': date,
         }
-        fetch('http://localhost:8000/api/todos/' + id, {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/form-data',
-                'Content-Type': 'application/json',
-
-            },
-            body: JSON.stringify(data),
-        })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    //alert(result['msg'])
-                    // window.location.href = '/';
-                }
-            )
+        UpdateTodoById(data,id)
     }
 
     const handleDateChange = (event) => {
@@ -170,7 +143,7 @@ function UpdateTodo() {
             <Link to='/' style={SubmitStyleDiv} onClick={handleSubmit}>
                 <input type="submit" style={SubmitStyle}  /> 
             </Link>
-            {/* history.push */}
+
         </form>
         </>
     );
