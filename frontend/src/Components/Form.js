@@ -161,7 +161,7 @@ function Form(props) {
         </div>
 
       </div>
-      <Link to="/" style={{textDecoration:"none"}}>
+      <Link to="/" style={{ textDecoration: "none" }}>
         <input type="submit" style={SubmitStyle} onClick={handleSubmit} />
       </Link>
     </form>
