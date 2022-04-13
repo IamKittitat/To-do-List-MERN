@@ -6,7 +6,7 @@ function TodoList(props) {
   const [theme, setTheme] = useContext(ThemeContext);
   const Todos = props.Todos;
   const setTodos = props.setTodos;
-
+  console.log("render TodoList");
   return (
     <>
       <style>{`

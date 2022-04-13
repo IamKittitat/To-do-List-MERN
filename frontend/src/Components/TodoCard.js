@@ -30,7 +30,7 @@ const DeleteButton = styled.input.attrs({ type: "submit" })`
 function TodoCard(props) {
     const [todo, setTodo] = useState(props.todo);
     const setTodos = props.setTodos;
-
+    console.log("render TodoCard");
     useEffect(() => {
         setTodo(props.todo);
     },[props.todo])

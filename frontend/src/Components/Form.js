@@ -16,6 +16,7 @@ function Form(props) {
   console.log("render Form");
 
   useEffect(() => {
+    console.log("useEffect Form");
     setInputs({});
 
     if (isUpdate) {
@@ -160,7 +161,7 @@ function Form(props) {
         </div>
 
       </div>
-      <Link to="/">
+      <Link to="/" style={{textDecoration:"none"}}>
         <input type="submit" style={SubmitStyle} onClick={handleSubmit} />
       </Link>
     </form>
