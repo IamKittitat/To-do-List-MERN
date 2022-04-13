@@ -8,6 +8,12 @@ function Main() {
   const [theme, setTheme] = useState(Themes);
   return (
     <>
+      <style>{`
+      body {
+        font-family: Montserrat, sans-serif;
+        background: ${theme[theme.now].pageBackground};
+      `}
+      </style>
       <ThemeContext.Provider value={[theme, setTheme]}>
         <Header />
         <Content />

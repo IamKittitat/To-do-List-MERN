@@ -10,11 +10,6 @@ function TodoList(props) {
   return (
     <>
       <style>{`
-      body {
-        font-family: Montserrat, sans-serif;
-        background: ${theme[theme.now].pageBackground};
-      }
-
       .rwd-table {
         margin:20px 10px 20px 70px;
         background: #34495E;
