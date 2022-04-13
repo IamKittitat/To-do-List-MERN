@@ -1,6 +1,6 @@
 import GetTodo from "../api/GetTodo";
 
-function UpdateDoneStatus(data, id,setTodos) {
+function UpdateStatus(data, id) {
     fetch('http://localhost:8000/api/todos/' + id, {
         method: 'PUT',
         headers: {
@@ -12,10 +12,9 @@ function UpdateDoneStatus(data, id,setTodos) {
         .then(res => res.json())
         .then(
             (result) => {
-              GetTodo(setTodos);
-              console.log("UpdateTodoById");
+              console.log("UpdateStatus api");
             }
           )
 }
 
-export default UpdateDoneStatus;
+export default UpdateStatus;
