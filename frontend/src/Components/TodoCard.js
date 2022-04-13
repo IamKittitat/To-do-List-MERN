@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import DeleteTodoById from "../api/DeleteTodoById";
 import GetTodo from "../api/GetTodo";
 import UpdateStatus from "../api/UpdateStatus";
-import UpdateTodoById from "../api/UpdateTodoById";
 
 const Td = styled.td`
     width: 50px;

@@ -1,9 +1,7 @@
-import React, { useContext } from "react";
+import React from "react";
 import TodoCard from "./TodoCard";
-import ThemeContext from '../Components/Themes';
 
 function TodoList(props) {
-  const [theme, setTheme] = useContext(ThemeContext);
   const Todos = props.Todos;
   const setTodos = props.setTodos;
   console.log("render TodoList");
