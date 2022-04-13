@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path='/' element={<Main />} />
-        <Route path='/update/:id' element={<Update />} />
+        <Route path='/update/:id' element={<Main />} />
       </Routes>
     </BrowserRouter>
   );
