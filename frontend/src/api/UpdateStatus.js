@@ -1,7 +1,5 @@
-import GetTodo from "../api/GetTodo";
-
 function UpdateStatus(data, id) {
-    fetch('http://localhost:8000/api/todos/' + id, {
+    return fetch('http://localhost:8000/api/todos/' + id, {
         method: 'PUT',
         headers: {
             'Accept': 'application/form-data',
