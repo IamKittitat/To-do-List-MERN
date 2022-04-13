@@ -1,11 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import CreateTodo from "../api/CreateTodo";
 import ThemeContext from '../Components/Themes';
-import TodoList from "./TodoList";
+import GetTodoById from "../api/GetTodoById";
+import GetTodo from "../api/GetTodo";
+import UpdateTodoById from "../api/UpdateTodoById";
 
-function Form() {
+function Form(props) {
   const [inputs, setInputs] = useState({});
   const [theme, setTheme] = useContext(ThemeContext);
+  const setTodos = props.setTodos;
+  let id = props.id;
+
+  let isUpdate = (id !== undefined);
+  console.log("render Form");
+
+  useEffect(() => {
+    setInputs({});
+
+    if (isUpdate) {
+      GetTodoById(id).then(
+        (result) => {
+          setInputs({
+            task: result.task,
+            date: result.date,
+          })
+        }
+      );
+    }
+  }, [id, isUpdate]);
+
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -14,14 +38,32 @@ function Form() {
   }
 
   const handleSubmit = event => {
-    event.preventDefault();
     if (inputs.task && inputs.date) {
       let data = {
         'task': inputs.task,
         'date': inputs.date,
         'done': false,
       }
-      CreateTodo(data, setInputs);
+      if (isUpdate) {
+        UpdateTodoById(data, id).then(
+          (result) => {
+            GetTodo().then((result) => {
+              setTodos(result);
+            });
+            console.log("UpdateTodoById");
+          }
+        );
+      } else {
+        CreateTodo(data).then(
+          (result) => {
+            console.log("create api");
+            GetTodo().then((result) => {
+              setTodos(result);
+            });
+          }
+        );
+      }
+      setInputs({});
     } else {
       alert("Please fill in all fields");
     }
@@ -55,6 +97,7 @@ function Form() {
     alignItems: 'center',
     justifyContent: 'center',
     margin: 'auto',
+    textDecoration: 'none',
   }
   const TaskInputStyle = {
     width: '550px',
@@ -92,36 +135,36 @@ function Form() {
   }
 
   return (
-    <>
-      <form>
-        <div style={InputStyle}>
-          <div style={TaskStyle}>
-            <label style={TaskLabelStyle}>Task</label>
-            <input
-              type="text"
-              name="task"
-              value={inputs.task || ""}
-              onChange={handleChange}
-              style={TaskInputStyle}
-            />
-          </div>
-
-          <div style={DateStyle}>
-            <label style={DateLabelStyle}>Due Date</label>
-            <input
-              type="date"
-              name="date"
-              value={inputs.date || ""}
-              onChange={handleChange}
-              style={DateInputStyle}
-            />
-          </div>
-
+    <form>
+      <div style={InputStyle}>
+        <div style={TaskStyle}>
+          <label style={TaskLabelStyle}>Task</label>
+          <input
+            type="text"
+            name="task"
+            value={inputs.task || ""}
+            onChange={handleChange}
+            style={TaskInputStyle}
+          />
         </div>
+
+        <div style={DateStyle}>
+          <label style={DateLabelStyle}>Due Date</label>
+          <input
+            type="date"
+            name="date"
+            value={inputs.date || ""}
+            onChange={handleChange}
+            style={DateInputStyle}
+          />
+        </div>
+
+      </div>
+      <Link to="/">
         <input type="submit" style={SubmitStyle} onClick={handleSubmit} />
-      </form>
-      <TodoList inputs={inputs} />
-    </>
+      </Link>
+    </form>
+
   )
 }
 

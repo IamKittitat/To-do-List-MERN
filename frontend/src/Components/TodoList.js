@@ -1,14 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import TodoCard from "./TodoCard";
-import GetTodo from "../api/GetTodo";
 import ThemeContext from '../Components/Themes';
 
 function TodoList(props) {
   const [theme, setTheme] = useContext(ThemeContext);
-  const [Todos, setTodos] = useState([]);
-  useEffect(() => {
-    GetTodo(setTodos)
-  }, [props])
+  const Todos = props.Todos;
+  const setTodos = props.setTodos;
 
   return (
     <>

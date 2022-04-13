@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react/cjs/react.production.min";
 import styled from 'styled-components';
 import DeleteTodoById from "../api/DeleteTodoById";
 import GetTodo from "../api/GetTodo";
@@ -31,18 +30,27 @@ const DeleteButton = styled.input.attrs({ type: "submit" })`
 function TodoCard(props) {
     const [todo, setTodo] = useState(props.todo);
     const setTodos = props.setTodos;
-    console.log(todo);
-    const changeDoneStatus = (id, done) => {
+
+    useEffect(() => {
+        setTodo(props.todo);
+    },[props.todo])
+
+    const changeDoneStatus = (id, done) => { 
         var data = {
             'done': !done,
         }
         let newTodo = { ...todo, done: !todo.done };
-        setTodo(newTodo);
-        console.log(todo);
+        setTodo(newTodo); 
         UpdateStatus(data, id); 
     }
     const DeleteTodo = id => {
-        DeleteTodoById(GetTodo, id, setTodos)
+        DeleteTodoById(id).then(
+            (result) => {
+                GetTodo().then((result) =>{
+                    setTodos(result); 
+                   });
+            }
+        )
     }
     const colorForStatus = todo.done === true ? '#0FC65E' : '#E42222';
     const ButtonStyle = {
