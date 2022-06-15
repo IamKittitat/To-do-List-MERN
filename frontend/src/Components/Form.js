@@ -6,9 +6,16 @@ import GetTodoById from "../api/GetTodoById";
 import GetTodo from "../api/GetTodo";
 import UpdateTodoById from "../api/UpdateTodoById";
 
+// Default props : set default of props if nothing sent.
+// props.type : validate type of props    
+
+// props >> {setTodos,id}
+
 function Form(props) {
   const [inputs, setInputs] = useState({});
   const [theme, setTheme] = useContext(ThemeContext);
+  // const {theme,...other} = useContext(ThemeContext); // other.setTheme
+  // const {theme} = useContext(ThemeContext); // if ThemeContext Value is object
   const setTodos = props.setTodos;
   let id = props.id;
 

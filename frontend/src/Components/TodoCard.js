@@ -5,6 +5,9 @@ import DeleteTodoById from "../api/DeleteTodoById";
 import GetTodo from "../api/GetTodo";
 import UpdateStatus from "../api/UpdateStatus";
 
+// ! Styled component > separate to other file , 
+// Move color to util and import from one place to use in component. 
+
 const Td = styled.td`
     width: 50px;
     height:30px;
@@ -26,6 +29,7 @@ const DeleteButton = styled.input.attrs({ type: "submit" })`
     background-color: #E42222;
     ${({ styleOverrides }) => ({ ...styleOverrides })}
 `
+
 function TodoCard(props) {
     const [todo, setTodo] = useState(props.todo);
     const setTodos = props.setTodos;

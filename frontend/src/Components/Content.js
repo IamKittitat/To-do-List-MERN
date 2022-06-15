@@ -9,6 +9,8 @@ function Content() {
     const { id } = useParams();
     const pathname = useLocation().pathname;
     const isUpdate = pathname.includes("update");
+    //split with / , query param  (more than 1 state) + enum 
+    // isA , isB > 2**n || if dependent; enum 
 
     console.log("render Content");
     useEffect(() => {
@@ -20,7 +22,7 @@ function Content() {
     return (
         <>
             <Form setTodos={setTodos} id={id} />
-            {isUpdate ? null : <TodoList Todos={Todos} setTodos={setTodos} />};
+            {isUpdate ? null : <TodoList Todos={Todos} setTodos={setTodos} />}
         </>
     )
 }

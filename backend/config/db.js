@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const config = require('config');
-const db = config.get('mongoURI');
+const db = config.get('mongoURI'); // env instead of default.json 
+// lib > .env , process.env.mongoURI ,  
 
+// why async/await ,  .then .catch
 const connectDB = async () => {
     try {
         mongoose.connect(
