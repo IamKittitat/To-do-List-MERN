@@ -183,7 +183,7 @@ function Form({ setTodos, id }) {
 
 Form.propTypes = {
   setTodos: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
 }
 
 export default Form;
