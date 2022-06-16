@@ -1,10 +1,10 @@
 import React from "react";
 import TodoCard from "./TodoCard";
+import PropTypes from 'prop-types';
 
-function TodoList(props) {
-  const Todos = props.Todos;
-  const setTodos = props.setTodos;
+function TodoList({ Todos, setTodos }) {
   console.log("render TodoList");
+
   return (
     <>
       <style>{`
@@ -52,6 +52,11 @@ function TodoList(props) {
       </table>
     </>
   )
+}
+
+TodoList.propTypes = {
+  Todos: PropTypes.array.isRequired,
+  setTodos: PropTypes.func.isRequired,
 }
 
 export default TodoList;

@@ -5,19 +5,18 @@ import ThemeContext from '../Components/Themes';
 import GetTodoById from "../api/GetTodoById";
 import GetTodo from "../api/GetTodo";
 import UpdateTodoById from "../api/UpdateTodoById";
+import PropTypes from 'prop-types';
 
 // Default props : set default of props if nothing sent.
 // props.type : validate type of props    
 
 // props >> {setTodos,id}
 
-function Form(props) {
+function Form({ setTodos, id }) {
   const [inputs, setInputs] = useState({});
   const [theme, setTheme] = useContext(ThemeContext);
   // const {theme,...other} = useContext(ThemeContext); // other.setTheme
   // const {theme} = useContext(ThemeContext); // if ThemeContext Value is object
-  const setTodos = props.setTodos;
-  let id = props.id;
 
   let isUpdate = (id !== undefined);
   console.log("render Form");
@@ -180,6 +179,11 @@ function Form(props) {
     </form>
 
   )
+}
+
+Form.propTypes = {
+  setTodos: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 }
 
 export default Form;

@@ -4,9 +4,7 @@ import styled from 'styled-components';
 import DeleteTodoById from "../api/DeleteTodoById";
 import GetTodo from "../api/GetTodo";
 import UpdateStatus from "../api/UpdateStatus";
-
-// ! Styled component > separate to other file , 
-// Move color to util and import from one place to use in component. 
+import PropTypes from 'prop-types';
 
 const Td = styled.td`
     width: 50px;
@@ -100,6 +98,13 @@ function TodoCard(props) {
         </Tr>
     );
 
+}
+
+TodoCard.propTypes = {
+    todo: PropTypes.object.isRequired,
+    setTodos: PropTypes.func.isRequired,
+    Todos: PropTypes.array.isRequired,
+    idx: PropTypes.number.isRequired,
 }
 
 export default TodoCard;
