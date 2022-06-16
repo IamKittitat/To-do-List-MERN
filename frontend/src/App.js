@@ -3,8 +3,6 @@ import './App.css';
 import Main from './Pages/Main';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-//icon and name.
-
 function App() {
   return (
     <BrowserRouter>
