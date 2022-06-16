@@ -44,7 +44,7 @@ function Form({ setTodos, id }) {
     setInputs(values => ({ ...values, [name]: value }))
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = () => {
     if (inputs.task && inputs.date) {
       let data = {
         'task': inputs.task,
@@ -53,7 +53,7 @@ function Form({ setTodos, id }) {
       }
       if (isUpdate) {
         UpdateTodoById(data, id).then(
-          (result) => {
+          () => {
             GetTodo().then((result) => {
               setTodos(result);
             });
@@ -62,7 +62,7 @@ function Form({ setTodos, id }) {
         );
       } else {
         CreateTodo(data).then(
-          (result) => {
+          () => {
             console.log("create api");
             GetTodo().then((result) => {
               setTodos(result);
