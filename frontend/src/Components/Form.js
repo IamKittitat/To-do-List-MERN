@@ -77,6 +77,12 @@ function Form(props) {
     }
   }
 
+  const FormStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  }
   const InputStyle = {
     display: 'flex',
     margin: '10px 160px 0px 110px',
@@ -94,17 +100,17 @@ function Form(props) {
   }
   const SubmitStyle = {
     border: 'none',
-    color: 'white',
+    color: '#34495E',
     fontSize: '20px',
+    fontWeight: 'bold',
     height: '40px',
     width: '500px',
     borderRadius: '10px',
     cursor: 'pointer',
-    backgroundColor: '#8B948F',
+    backgroundColor: '#AEBEC1',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 'auto',
     textDecoration: 'none',
   }
   const TaskInputStyle = {
@@ -143,7 +149,7 @@ function Form(props) {
   }
 
   return (
-    <form>
+    <form style={FormStyle}>
       <div style={InputStyle}>
         <div style={TaskStyle}>
           <label style={TaskLabelStyle}>Task</label>
@@ -168,8 +174,8 @@ function Form(props) {
         </div>
 
       </div>
-      <Link to="/" style={{ textDecoration: "none" }}>
-        <input type="submit" style={SubmitStyle} onClick={handleSubmit} />
+      <Link to="/" style={{ textDecoration: "none", cursor: "default" }}>
+        <input type="submit" value={isUpdate ? "Edit Task" : "Add New Task"} style={SubmitStyle} onClick={handleSubmit} />
       </Link>
     </form>
 

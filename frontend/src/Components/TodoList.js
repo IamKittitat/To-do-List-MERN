@@ -12,8 +12,8 @@ function TodoList(props) {
         margin:20px 10px 20px 70px;
         background: #34495E;
         width: 90%;
-        border-radius: 10px;   
-        border-collapse: collapse;    
+        border-radius: 0px;   
+        border-collapse: collapse;
       }
 
       th{
@@ -34,13 +34,12 @@ function TodoList(props) {
       .tableBody{
         color: #fff;
         text-align: center;
-        
       }
     `}</style>
       <table className="rwd-table">
         <thead className="tableHead">
           <tr>
-            <th>Done</th>
+            <th>Status</th>
             <th colSpan={2}>Task</th>
             <th>Due date</th>
           </tr>

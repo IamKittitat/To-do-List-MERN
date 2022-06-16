@@ -6,11 +6,13 @@ const Toggle = styled.button`
     cursor: pointer;
     height: 50px;
     width: 100px;   
-    border-radius: 10%; 
+    border-radius: 10px; 
     border: none;
     margin: 20px;
-    background-color: ${props => props.theme[props.theme.now].pageBackground};
-    color: ${props => props.theme[props.theme.now].titleColor};
+    ${'' /* background-color: ${props => props.theme[props.theme.now].pageBackground}; */}
+    background-color : #AEBEC1;
+    color: #34495E;
+    font-weight: bold;
     transition: all .5s ease;
 `;
 

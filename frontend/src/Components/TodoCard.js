@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import DeleteTodoById from "../api/DeleteTodoById";
@@ -13,20 +13,20 @@ const Td = styled.td`
     height:30px;
 `
 const Tr = styled.tr`   
-    border: 1px solid #34495E;
     font-family: Montserrat, sans-serif !important;
     background-color: ${props => props.tableRowColor} !important;
 `
 const UpdateButton = styled.input.attrs({ type: "submit" })`
-    background-color: #EEA90B;
+    background-color: #dd5;
     ${({ styleOverrides }) => ({ ...styleOverrides })}
 `
 const CheckBox = styled.input.attrs({ type: "submit" })`
     background-color: ${props => props.colorForStatus};
+    border: 1px solid black !important;
     ${({ styleOverrides }) => ({ ...styleOverrides })}
 `
 const DeleteButton = styled.input.attrs({ type: "submit" })`
-    background-color: #E42222;
+    background-color: #dd5;
     ${({ styleOverrides }) => ({ ...styleOverrides })}
 `
 
@@ -36,49 +36,59 @@ function TodoCard(props) {
     console.log("render TodoCard");
     useEffect(() => {
         setTodo(props.todo);
-    },[props.todo])
+    }, [props.todo])
 
-    const changeDoneStatus = (id, done) => { 
+    const changeDoneStatus = (id, done) => {
         var data = {
             'done': !done,
         }
         let newTodo = { ...todo, done: !todo.done };
-        setTodo(newTodo); 
-        UpdateStatus(data, id); 
+        setTodo(newTodo);
+        UpdateStatus(data, id);
     }
     const DeleteTodo = id => {
         DeleteTodoById(id).then(
             (result) => {
-                GetTodo().then((result) =>{
-                    setTodos(result); 
-                   });
+                GetTodo().then((result) => {
+                    setTodos(result);
+                });
             }
         )
     }
     const colorForStatus = todo.done === true ? '#0FC65E' : '#E42222';
     const ButtonStyle = {
         border: 'none',
-        color: 'white',
+        color: '#34495E',
         height: '40px',
         width: '70px',
         'border-radius': '10px',
         margin: '4px 10px',
         cursor: 'pointer',
+        fontWeight: 'bold',
     }
     const tableRowColor = () => {
         if (todo.done) {
-            return '#0BA94F'
+            return '#22816E'
         } else {
             if (new Date().setHours(0, 0, 0, 0) <= new Date(todo.date).setHours(0, 0, 0, 0)) {
                 return '#34495E'
             }
-            return '#AF0D0D'
+            return '#BB2D32'
         }
+    }
+
+    const getDate = (date) => {
+        let d = new Date(date);
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        return d.getDate() + " " + monthNames[d.getMonth() + 1] + " " + d.getFullYear();
     }
 
     return (
         <Tr tableRowColor={tableRowColor}>
-            <Td><CheckBox styleOverrides={ButtonStyle} colorForStatus={colorForStatus} className="CheckBox" type="submit" value={todo.done} onClick={() => changeDoneStatus(todo._id, todo.done)} /></Td>
+            <Td><CheckBox styleOverrides={ButtonStyle} colorForStatus={colorForStatus} className="CheckBox" type="submit" value={todo.done ? "Done" : "-"} onClick={() => changeDoneStatus(todo._id, todo.done)} /></Td>
             <Td>{todo.task}</Td>
             <Td><div>
                 <Link to={`/update/${todo._id}`} >
@@ -86,7 +96,7 @@ function TodoCard(props) {
                 </Link>
                 <DeleteButton styleOverrides={ButtonStyle} type="submit" value="Delete" onClick={() => DeleteTodo(todo._id)} />
             </div></Td>
-            <Td>{(new Date().setHours(0, 0, 0, 0) === new Date(todo.date).setHours(0, 0, 0, 0)) ? 'Today' : todo.date}</Td>
+            <Td>{(new Date().setHours(0, 0, 0, 0) === new Date(todo.date).setHours(0, 0, 0, 0)) ? 'Today' : getDate(todo.date)}</Td>
         </Tr>
     );
 

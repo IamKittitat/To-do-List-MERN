@@ -1,7 +1,7 @@
 import React from "react";
 
 const LightTheme = {
-    pageBackground: "white",
+    pageBackground: "#FFFFFF",
     titleColor: "#34495E",
     tableColor: "#34495E",
     tableTitle: "#dd5",
