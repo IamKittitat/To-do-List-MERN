@@ -45,6 +45,12 @@ function Form({ setTodos, id }) {
   }
 
   const handleSubmit = () => {
+    if (inputs.task) {
+      if (inputs.task.length > 20) {
+        alert("Cant Have Task More Than 20 Characters");
+        return;
+      }
+    }
     if (inputs.task && inputs.date) {
       let data = {
         'task': inputs.task,
